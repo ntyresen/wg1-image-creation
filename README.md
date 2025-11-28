@@ -99,29 +99,6 @@ Changing this might cause the text to overflow the page!!
 The answer options to the questions have a maximum length as well. There are two types of boxes that each answer option can appear in.
 This means we have to test for each option whether it fits in both boxes (and especially whether it fits in the smaller one).
 As per default, 10 versions of the images with shuffled answer options will be created, all options should appear in each box type at least
-once across all versions. If an option does not, the script will show a warning message but continue. In addition, as people also check
+once across all versions. If an option does not fit, the script will show a warning message but continue. In addition, as people also check
 every screen manually, it will be noticed if an option does not fit.
 
-#### Manually testing the answer option lengths
-In order to test whether the answer options fit in the boxes
-you need to do the following steps:
-1. Set the variable `NUM_PERMUTATIONS` in the `image_config.py` file to 1
-2. Go to the file `text_to_picture.py` and change the following lines (line 224 ca.):
-```python
-# shuffled_option_keys = ['left', 'up', 'right', 'down']
-shuffled_option_keys = ['up', 'left', 'down', 'right']
-# random.shuffle(shuffled_option_keys)
-```
-You should comment the random shuffle step so it won't shuffle the answer options but will be hardcoded for each question.
-3. Run the script `text_to_picture.py`. If an option does not fit, it will show an error message. Please copy it once the script it through.
-4. Now you need to go to the `text_to_picture.py` file and change the hardcoded positions of the answer options. This way, you can test all box types for all options.
-```python
-shuffled_option_keys = ['left', 'up', 'right', 'down']
-# shuffled_option_keys = ['up', 'left', 'down', 'right']
-# random.shuffle(shuffled_option_keys)
-```
-5. Now you need to go to the config folder in the stimulus folder of the respective language. E.g. for the toy example 
-it is `data/stimuli_toy_x_1/config/` and delete the entire folder called `question_answer_option_shuffling_tox_x_1`.
-You need it to make sure that the script will not use the shuffled options but the hardcoded ones.
-6. Repeat step 3.
-7. If all options fit, you can now set the `NUM_PERMUTATIONS` back to its original value and the random shuffle back to the original state.

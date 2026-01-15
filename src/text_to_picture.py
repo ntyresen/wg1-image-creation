@@ -34,6 +34,8 @@ def create_images(
     # initial_stimulus_df = pd.read_csv(stimuli_csv_file_name, sep=',', encoding='utf-8')
     initial_stimulus_df.dropna(subset=['stimulus_id'], inplace=True)
 
+    initial_stimulus_df['stimulus_id'] = initial_stimulus_df['stimulus_id'].astype(int)
+
     stimulus_types = initial_stimulus_df['stimulus_type'].unique()
     checks.check_stimulus_types(stimulus_types)
 
